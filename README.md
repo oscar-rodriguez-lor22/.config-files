@@ -1,8 +1,5 @@
 # .config-files
 
-## Debian System
-
-Polybar:
-Pywal:
-
-## Arch System
+## Blackview Mini-PC
+## Desktop
+## Laptop
