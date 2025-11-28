@@ -11,6 +11,5 @@ rofi: Default rofi config
 
 ## TO-DO
 - Add a better system font
-- Create nvim theme to match kitty
-- edit rofi theme to match both kitty and nvim
-- Nvim customizations/plugins
+- More complete nvim settup (customizations/plugins)
+- Maybe rethink color scheme, could be better executed
