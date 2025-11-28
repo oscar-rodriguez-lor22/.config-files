@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# gui showing nvim shortcuts
+
+Main() {
+	source /usr/share/endeavouros/scripts/eos-script-lib-yad || return 1
+	local command=(
+		eos_yad
+		--title="Nvim Keybindings"
+		--no-buttons
+		--width=500
+		--height=400
+		--list
+
+		--column=Keybindings: --column=Description
+		"Mod" "work in progress..."
+	)
+	"${command[@]}$"
+}
+
+Main "$@"
