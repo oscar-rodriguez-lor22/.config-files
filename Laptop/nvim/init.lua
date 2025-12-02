@@ -1,0 +1,13 @@
+-- ===============================================
+-- 1. Imports
+require('plugins')
+require('theme')
+
+-- ===============================================
+-- 2. General Settings
+-- ===============================================
+
+-- Translate Vimscript 'set' commands to vim.opt.* = value
+vim.opt.termguicolors = true 
+vim.opt.number = true
+vim.opt.relativenumber = true
