@@ -1,0 +1,10 @@
+
+// Rofi Config
+configuration {
+  font: "JetBrainsMono Nerd Font 14";
+  show-icons: true;
+  drun-display-format: "{icon} {name}";
+}
+
+// Imports
+@theme "~/.config/rofi/themes/tokyo-night.rasi"

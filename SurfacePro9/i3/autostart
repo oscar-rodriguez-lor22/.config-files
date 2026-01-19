@@ -1,0 +1,12 @@
+#!/bin/bash
+
+exec --no-startup-id sleep 1
+
+# Background 
+exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/mist_forest_2.png
+
+# Opacity Settings
+exec_always --no-startup-id picom -b
+
+# Polybar
+exec --no-startup-id ~/.config/polybar/launch.sh
