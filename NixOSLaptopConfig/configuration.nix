@@ -6,12 +6,18 @@
 
 {
 
-  programs.waybar.enable = false;
-
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
+
+  # Home Manager
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
+  home-manager.users.oscar = {
+    imports = [ /home/oscar/.config/home-manager/home.nix ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -20,6 +26,7 @@
   # Networking
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.firewall.trustedInterfaces = ["tailscale0"];
 
   # Set general system info
   time.timeZone = "America/Matamoros";
@@ -37,9 +44,9 @@
   # Display Manager
   services.displayManager.ly.enable = true;
   services.displayManager.ly.settings = {
-  animation = "matrix"; # or "fire"
-  bigclock = true;
-};
+  	animation = "matrix"; # or "fire"
+  	bigclock = true;
+  };
 
   # Screen sharing/compatability
   xdg.portal.enable = true;
@@ -104,43 +111,15 @@
 	lazygit
 	neofetch
 	bemenu
+	blender
+	nodejs
   ];
-
-  # Nvim Config
-  programs.neovim = {
-	enable = true;
-	defaultEditor = true;
-	configure = {
-		packages.myVimPackage = with pkgs.vimPlugins; {
-			start = [
-				neo-tree-nvim 
-				nvim-colorizer-lua 
-				which-key-nvim
-				adwaita-nvim 
-				telescope-nvim 
-				nvim-treesitter.withAllGrammars
-				render-markdown-nvim 
-				nvim-web-devicons 
-				lspkind-nvim
-				nvim-autopairs 
-				lualine-nvim 
-				vim-fugitive
-				nvim-lspconfig
-				cmp-nvim-lsp 
-				nvim-cmp
-				cmp-buffer 
-				cmp-path 
-				nui-nvim
-				plenary-nvim	
-			];
-			opt = [];
-		};
-	customRC = ''
-		set termguicolors
-		set relativenumber
-	'';
-	};
-  };
+  services.tailscale.enable = true;
+  services.syncthing = {
+  	enable = true;
+  	user = "your_username";
+  	dataDir = "/home/oscar/Sync"; # This is your sync folder
+  };			
 
   # Kitty Config
   environment.etc."xdg/kitty/kitty.conf".source = pkgs.writeText "kitty.conf" ''
@@ -172,10 +151,11 @@
 	color14 #56d4dd
 	color7 #b1bac4
 	color15 #ffffff
-	background_opacity		0.8
-'';
+	background_opacity 0.8
+  '';
 
-  # Nvim Config 
+  # Waybar Config 
+  environment.etc."xdg/waybar/style.css".source = /home/oscar/.config/waybar/styles.css;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
