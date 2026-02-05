@@ -1,0 +1,195 @@
+@define-color background #0d1117;
+@define-color second-background #0d1117;
+@define-color text #c9d1d9;
+@define-color green #3eb341;
+@define-color color1 #7699A3;
+@define-color color2 #8D7AAE;
+@define-color color3 #78997A;
+@define-color urgent #B05A5A;
+
+
+/* font declared */
+* {
+  font-size: 10px;
+  font-family: "JetBrains Mono Nerd Font";
+  font-weight: bold;
+}
+
+#custom-openbracket,
+#custom-closebracket {
+  margin: 0 3px;
+}
+
+/* idk what all this does */
+window#waybar {
+  background-color: transparent;
+  border-bottom: 0;
+  color: @text;
+  transition: background-color 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+
+/* configuring the modules */
+.modules-left {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0px;
+  background-color: @background;
+}
+
+.modules-center {
+  margin: 10px 0 0 0;
+  padding: 0 4px 0 4px;
+  background-color: @background;
+}
+
+.modules-right {
+  margin: 10px 10px 0 0;
+  padding: 0 4px 0 4px;
+  background-color: @background;
+}
+
+
+/* whats this?? */
+button {
+  border: none;
+}
+
+
+/* left island */
+
+/* menu pannel */
+#custom-arch,
+#custom-powerprofile,
+#custom-themeswitcher {
+  padding-right: 10px;
+  padding-left: 5px;
+  font-size: 10px;
+  border-radius: 8px;
+}
+
+#custom-arch:hover {
+  color: @color1;
+}
+
+#custom-powerprofile:hover {
+  color: @color1
+}
+
+#custom-themeswitcher:hover {
+  color: @color1;
+}
+
+/* workspace pannel */
+#workspaces button {
+  min-width: 0;
+  padding: 0 8px 0 8px;
+  background-color: transparent;
+  color: @text;
+  border-radius: 0;
+}
+
+#workspaces button:hover {
+  background-color: @second-background;
+}
+
+#workspaces button.active {
+  background-color: @second-background;
+}
+
+#workspaces button.urgent {
+  background-color: @urgent;
+}
+
+/* no idea what this does */
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0;
+}
+
+.modules-right>widget:last-child>#workspaces {
+  margin-right: 0;
+}
+
+/* center module  */
+#window {
+  padding: 0 5px;
+}
+
+/* Right Island */
+
+/* module general styles */
+#cpu,
+#battery,
+#memory,
+#custom-clipboard,
+#custom-bluetooth,
+#network 
+#pulseaudio {
+  min-width: 4px;
+  padding: 0 4px;
+  color: @color1;
+  background-color: @background;
+}
+
+#clock:hover,
+#battery:hover,
+#custom-cpu:hover,
+#custom-clipboard:hover,
+#custom-bluetooth:hover,
+#network:hover,
+#idle_inhibitor:hover,
+#custom-swaync:hover,
+#backlight:hover,
+#wireplumber:hover {
+  color: @color1;
+}
+
+#idle_inhibitor {
+  padding: 0 10px 0 0;
+}
+
+#custom-powerprofile {
+  padding: 0 8px 0 4px;
+}
+
+/* Remaining Modules */
+#backlight,
+#wireplumber {
+  padding: 0 5px;
+}
+
+#wireplumber.muted {
+  background-color: @color2;
+}
+
+#custom-swaync {
+  padding: 0 10px 0 5px;
+  font-size: 10px;
+  /* same scale as other icons */
+  color: @text;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @green;
+}
+
+#battery.critical:not(.charging) {
+  background-color: @urgent;
+  color: @text;
+  animation: blink 0.5s steps(12) infinite alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: @second-background;
+    color: @text;
+  }
+}
