@@ -1,4 +1,5 @@
 [{
+    "style": "/home/oscar/.config/waybar/style.css",
     "height": 30,
     "spacing": 5, 
 
