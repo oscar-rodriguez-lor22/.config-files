@@ -5,5 +5,3 @@ Includes ly for the window manager, hyprland for the tiling manager, waybar for 
 
 **Wallpaper**
 ![Wallpaper](Background/p.jpg)
-
-**Screenshots**
