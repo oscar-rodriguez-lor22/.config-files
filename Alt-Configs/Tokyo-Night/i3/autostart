@@ -3,7 +3,7 @@
 exec --no-startup-id sleep 1
 
 # Background 
-exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/bg4.png
+exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/mist_forest_2.png
 
 # Opacity Settings
 exec_always --no-startup-id picom -b

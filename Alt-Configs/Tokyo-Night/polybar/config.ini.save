@@ -1,32 +1,24 @@
 [colors]
-; 20% opacity (33) applied to the grey background #969491
-background = #33969491
-; Primary foreground (off-white)
-foreground = #f1f1f1
-; Cyan used for the cursor and selection
-accent = #3fc4ce
-; Darker color for muted elements
-muted = #25211c
-; Darkest color for subtle borders
-subtle = #000000
-; Red for alerts
-alert = #e74946
+background = #1a1b26
+foreground = #c0caf5
+accent = #7aa2f7
+muted = #565f89
+subtle = #414868
 
 [bar/example]
 width = 100%
-height = 30pt
-radius = 0
+height = 40pt
+radius = 8
 
-; Background now supports transparency
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-size = 2pt
+border-size = 1pt
 border-color = ${colors.subtle}
 
 padding-left = 2
 padding-right = 2
-module-margin = 1
+module-margin = 2
 
 font-0 = Inter:weight=medium:size=11;2
 font-1 = JetBrains Mono Nerd Font:size=12;2
@@ -43,13 +35,13 @@ type = internal/xworkspaces
 
 label-active = %name%
 label-active-background = ${colors.accent}
-label-active-foreground = ${colors.subtle}
+label-active-foreground = ${colors.background}
 label-active-padding = 2
 label-active-margin = 1
+label-active-radius = 4
 
 label-occupied = %name%
 label-occupied-foreground = ${colors.foreground}
-label-occupied-background = ${colors.muted}
 label-occupied-padding = 2
 label-occupied-margin = 1
 
@@ -61,30 +53,32 @@ label-empty-margin = 1
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
-label-foreground = ${colors.subtle}
+label-foreground = ${colors.muted}
 
 [module/volume]
 type = internal/pulseaudio
 format-volume = <label-volume>
-label-volume = %percentage%%
+label-volume = vol:  %percentage%%
 format-volume-prefix = "󰕾 "
 format-volume-prefix-foreground = ${colors.accent}
 
 label-muted = muted
 format-muted-prefix = "󰖁 "
-format-muted-prefix-foreground = ${colors.alert}
+format-muted-prefix-foreground = ${colors.muted}
+
+click-right = pavucontrol
 
 [module/memory]
 type = internal/memory
 interval = 5
-label = RAM %percentage_used%%
+label = ram: %percentage_used%%
 format-prefix = "󰍛 "
 format-prefix-foreground = ${colors.accent}
 
 [module/cpu]
 type = internal/cpu
 interval = 5
-label = CPU %percentage%%
+label = cpu:  %percentage%%
 format-prefix = "󰻠 "
 format-prefix-foreground = ${colors.accent}
 
@@ -94,9 +88,8 @@ battery = BAT1
 adapter = ADP1
 full-at = 99
 poll-interval = 5
-label = BAT %percentage%%
-format-prefix = "󰁹 "
-format-prefix-foreground = ${colors.accent}
+label = bat: %percentage%
+
 
 [module/date]
 type = internal/date
@@ -108,5 +101,4 @@ format-prefix-foreground = ${colors.accent}
 
 [settings]
 screenchange-reload = true
-; Set to true to help with transparency rendering
-pseudo-transparency = true
+pseudo-transparency = false

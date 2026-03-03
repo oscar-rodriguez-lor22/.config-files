@@ -1,0 +1,132 @@
+/*
+ * 1984 Orwellian theme for Rofi
+ * Based on the theme by Bertie Blackman
+ */
+
+* {
+    /* 20% opacity applied to the #969491 background */
+    bg: rgba(150, 148, 145, 0.2);
+    
+    /* Highlight/Selection color (Cyan #3fc4ce) */
+    hv: #3fc4ce; 
+    
+    /* Primary text (Off-white #f1f1f1) */
+    primary: #f1f1f1; 
+    
+    /* Secondary/Muted background (#25211c) */
+    ug: #25211c;
+    
+    /* Main text color (Cyan for readability) */
+    kl: #3fc4ce;
+    
+    /* Dark text for high-contrast selection */
+    black: #000000;
+
+    font: "Monospace 18";
+    background-color: transparent;
+    border: 0px;
+}
+
+window {
+    width: 1400;
+    height: 700;
+    orientation: horizontal;
+    location: center;
+    anchor: center;
+    
+    /* This ensures the 20% alpha background renders */
+    transparency: "real"; 
+    background-color: @bg;
+    
+    border-color: @primary;   
+    border: 3px;
+    border-radius: 6px;
+    spacing: 0;
+    children: [ mainbox ];
+}
+
+mainbox {
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+
+inputbar {
+    text-color: @kl;
+    padding: 11px;
+    border: 0 0 2px 0;
+    border-color: @primary;
+    /* Darker input area for contrast */
+    background-color: rgba(37, 33, 28, 0.5); 
+}
+
+message {
+    padding: 0;
+}
+
+textbox {
+    text-color: @kl;
+    padding: 10px;
+}
+
+entry, prompt, case-indicator {
+    text-font: inherit;
+    text-color: inherit;
+}
+
+prompt {
+    margin: 0px 5px 0px 0px;
+}
+
+listview {
+    layout: vertical;
+    padding: 8px;
+    lines: 12;
+    columns: 1;
+    dynamic: false;
+}
+
+element {
+    padding: 8px;
+    vertical-align: 0.5;
+    text-color: @primary;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+/* When you hover or select an item */
+element selected.normal {
+    text-color: @black;
+    background-color: @hv;
+}
+
+element normal active {
+    background-color: @hv;
+    text-color: @black;
+}
+
+element-icon {
+    size: 1.2em;
+    background-color: transparent;
+    margin: 0 10px 0 0;
+}
+
+element normal urgent {
+    background-color: #e74946; /* Red color from 1984 theme */
+}
+
+button {
+    padding: 6px;
+    text-color: @primary;
+    horizonatal-align: 0.5;
+    border: 2px;
+    border-radius: 4px;
+    border-color: @primary;
+}
+
+button selected normal {
+    background-color: @hv;
+    text-color: @black;
+}

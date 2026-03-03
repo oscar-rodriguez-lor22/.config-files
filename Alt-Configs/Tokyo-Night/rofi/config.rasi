@@ -7,4 +7,4 @@ configuration {
 }
 
 // Imports
-@theme "~/.config/rofi/themes/glass.rasi"
+@theme "~/.config/rofi/themes/tokyo-night.rasi"
