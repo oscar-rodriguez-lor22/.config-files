@@ -1,14 +1,11 @@
-## Complete Themes
-**Desktop**
+# .config-files
+This repo contains several .config files and setups that I've used over the years as well as a few useful scripts for maintaining my PCs. Note that most of the configs have not been written by me and still include attributions to the original authors
 
-**Desktop1**
+## Glass
+[<img src="prev.png">](https://github.com/oscar-rodriguez-lor22/.config-files/Glass/prev.png)
 
-**NixOSLaptop**
+## Tokyo-Night
 
-**SurfacePro9**
+## GitHub-Dark
 
-## Server
-
-## Other
-**Reference**
-Some customizations that are started but not finished or just minimal. Also contains some files that pretty much all of my setups share like the hosts file.
+## Lichen  
