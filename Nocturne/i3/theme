@@ -1,0 +1,22 @@
+#!/bin/bash
+
+exec --no-default-id sleep 1
+
+# Gaps
+gaps outer 4
+gaps inner 4
+
+# Borders
+default_border pixel 0
+default_floating_border normal
+
+# Color Scheme
+#set_from_resource $bg    color0 #282828
+#set_from_resource $fg    color7 #a89984
+#set_from_resource $hi    color4 #458588
+#set_from_resource $crit  color1 #cc241d
+# class                 border  backgr. text    indicator child_border
+#client.focused          $hi     $hi     $fg     $hi       $fg
+#client.focused_inactive $bg     $bg     $fg     $bg       $bg
+#client.unfocused        $bg     $bg     $fg     $bg       $bg
+#client.urgent           $crit   $crit   $fg     $crit     $crit

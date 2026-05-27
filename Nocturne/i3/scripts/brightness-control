@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+## Brightness Control Script using /sys/class/backlight
+## This script requires root privileges (via pkexec) to write to the brightness file.
+
+# --- Configuration ---
+BRIGHTNESS_STEP_PERCENT=5
+DEVICE_PATH="/sys/class/backlight/$(ls /sys/class/backlight | head -n 1)"
+
+if [ ! -d "$DEVICE_PATH" ]; then
+    echo "Error: Backlight device not found in /sys/class/backlight/"
+    exit 1
+fi
+
+BRIGHTNESS_FILE="$DEVICE_PATH/brightness"
+MAX_BRIGHTNESS_FILE="$DEVICE_PATH/max_brightness"
+
+# --- Main Logic ---
+
+if [ -f "$MAX_BRIGHTNESS_FILE" ]; then
+    MAX_BRIGHTNESS=$(cat "$MAX_BRIGHTNESS_FILE")
+else
+    echo "Error: Max brightness file not found."
+    exit 1
+fi
+
+if [ -f "$BRIGHTNESS_FILE" ]; then
+    CURRENT_BRIGHTNESS=$(cat "$BRIGHTNESS_FILE")
+else
+    echo "Error: Brightness file not found."
+    exit 1
+fi
+
+STEP_VALUE=$((MAX_BRIGHTNESS * BRIGHTNESS_STEP_PERCENT / 100))
+
+# Ensure the step value is at least 1, so brightness can always change
+if [ "$STEP_VALUE" -eq 0 ]; then
+    STEP_VALUE=1
+fi
+
+NEW_BRIGHTNESS=$CURRENT_BRIGHTNESS
+
+case "$1" in
+    up)
+        NEW_BRIGHTNESS=$((CURRENT_BRIGHTNESS + STEP_VALUE))
+        if [ "$NEW_BRIGHTNESS" -gt "$MAX_BRIGHTNESS" ]; then
+            NEW_BRIGHTNESS=$MAX_BRIGHTNESS
+        fi
+        ;;
+    down)
+        # Decrease brightness
+        NEW_BRIGHTNESS=$((CURRENT_BRIGHTNESS - STEP_VALUE))
+        # Clamp value to a minimum of 0
+        if [ "$NEW_BRIGHTNESS" -lt 0 ]; then
+            NEW_BRIGHTNESS=0
+        fi
+        ;;
+    *)
+        echo "Usage: $0 {up|down}"
+        exit 1
+        ;;
+esac
+
+# 3. Apply the new brightness value
+echo $NEW_BRIGHTNESS > "$BRIGHTNESS_FILE"
+
+# Optional: Print current status (for debugging/visual feedback)
+echo "Brightness set to $NEW_BRIGHTNESS / $MAX_BRIGHTNESS"
+
+exit 0

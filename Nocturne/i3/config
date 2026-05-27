@@ -1,0 +1,4 @@
+# Imports
+include ~/.config/i3/autostart
+include ~/.config/i3/keybindings
+include ~/.config/i3/theme
